@@ -1,5 +1,5 @@
 
-![Image description](https://i1.faceprep.in/ProGrad/prograd-logo.png)
+![Logo-nav](https://s3.ap-south-1.amazonaws.com/kalvi-education.github.io/front-end-web-development/Kalvium-Logo.png)
 
 # ProGrad Lab | REACT - Pro Nutrition
 
