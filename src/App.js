@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from "react";
+import FoodBox from "./components/FoodBox.js";
+import Search from './components/Search';
+import FoodData from "./components/FoodData"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      searchTerm:"",
+    }
+  }
+
+
+handleSearch = (e)=>{
+  this.setState({
+    searchTerm:e.target.value
+  })
 }
 
-export default App;
+
+render(){
+  return(
+    <div>
+
+      <Search handleSearch={this.handleSearch}/>
+
+      {
+        FoodData.filter((val)=>{
+          if(this.state.searchTerm===""){
+            return val;
+          }
+          else if(val.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())){
+            return val;
+          }
+        }).map(footItem=>{
+          return(
+            <div key={footItem.id} className="gap">
+              <FoodBox food={footItem} totalCost={this.totalCost} />
+            </div>
+          )
+        })
+      }
+    </div>
+    )
+  }
+}
